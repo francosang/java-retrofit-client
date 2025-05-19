@@ -1,15 +1,15 @@
 package com.jfranco;
 
-public class ResponseGithub {
+public class RepoResponse {
 
     private String id;
     private String htmlUrl;
-    private String full_name;
+    private String fullName;
 
-    ResponseGithub(String id, String htmlUrl, String fullName) {
+    RepoResponse(String id, String htmlUrl, String fullName) {
         this.id = id;
         this.htmlUrl = htmlUrl;
-        this.full_name = fullName;
+        this.fullName = fullName;
     }
 
     public String getId() {
@@ -20,8 +20,8 @@ public class ResponseGithub {
         return htmlUrl;
     }
 
-    public String getFull_name() {
-        return full_name;
+    public String getFullName() {
+        return fullName;
     }
 
     @Override
@@ -29,7 +29,7 @@ public class ResponseGithub {
         return "ResponseGithub{" +
                 "id='" + id + '\'' +
                 ", htmlUrl='" + htmlUrl + '\'' +
-                ", fullName='" + full_name + '\'' +
+                ", fullName='" + fullName + '\'' +
                 '}';
     }
 

@@ -1,12 +1,11 @@
 package com.jfranco;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 
-import com.google.gson.Gson;
+import com.google.gson.FieldNamingPolicy;
+import com.google.gson.GsonBuilder;
 
-import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -18,18 +17,22 @@ public class App {
         System.out.println("Hello World!");
 
         Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("https://api.github.com")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build();
+                .baseUrl("https://api.github.com")
+                .addConverterFactory(
+                        GsonConverterFactory.create(new GsonBuilder()
+                                .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
+                                .create()))
+                .build();
 
         Github service = retrofit.create(Github.class);
 
-        final Response<List<ResponseGithub>> response = service.listRepos(args[0]).execute();
+        final String userName = args[0];
 
-        System.out.println("Respose del usuaio " + args[0]);
-        response.body().forEach(repo -> {
+        final List<RepoResponse> response = service.listRepos(userName).execute().body();
+
+        System.out.println("Respose del usuaio " + userName);
+        response.forEach(repo -> {
             System.out.println("- " + repo);
-    
         });
     }
 }
