@@ -32,7 +32,11 @@ public class App {
 
         System.out.println("Respose del usuaio " + userName);
         response.forEach(repo -> {
-            System.out.println("- " + repo);
+            System.out.println("ID: " + repo.getId());
+            System.out.println("Nombre: " + repo.getFullName());
+            System.out.println("Url: " + repo.getHtmlUrl());
+        
+            System.out.println();
         });
     }
 }
